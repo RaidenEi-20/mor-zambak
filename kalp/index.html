@@ -1,0 +1,41 @@
+# 3. index.html dosyasını zambak kodlarıyla tek komutta yeniden yarat
+cat << 'EOF' > index.html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senin İçin 🪻</title>
+    <style>
+        body { background-color: #050508; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; font-family: 'Courier New', monospace; }
+        svg { width: 100vw; max-width: 500px; height: 90vh; filter: drop-shadow(0 0 12px rgba(199, 125, 255, 0.6)); }
+        .zambak-cizgi { fill: none; stroke: #c77dff; stroke-width: 1.5; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: cizim 5s ease-in-out forwards; }
+        @keyframes cizim { to { stroke-dashoffset: 0; } }
+        .sevgi-metni { font-size: 13px; fill: #e0b0ff; font-weight: bold; letter-spacing: 2px; text-shadow: 0 0 8px #9d4edd; opacity: 0; animation: yaziBelirme 2s ease-in forwards 3s; }
+        @keyframes yaziBelirme { to { opacity: 1; } }
+    </style>
+</head>
+<body>
+<svg viewBox="0 0 400 600" id="zambak">
+    <defs>
+        <path id="sap" d="M 200 580 Q 180 400 200 250" />
+        <path id="sol-yaprak" d="M 195 450 Q 110 420 80 350 Q 140 380 190 360" />
+        <path id="sag-yaprak" d="M 195 380 Q 290 340 320 260 Q 260 300 205 290" />
+        <path id="cicek-orta" d="M 200 250 C 120 180 150 60 200 30 C 250 60 280 180 200 250" />
+        <path id="cicek-sol" d="M 200 250 C 150 150 80 150 60 90 C 130 100 180 150 200 250" />
+        <path id="cicek-sag" d="M 200 250 C 250 150 320 150 340 90 C 270 100 220 150 200 250" />
+    </defs>
+    <use href="#sap" class="zambak-cizgi" />
+    <use href="#sol-yaprak" class="zambak-cizgi" style="animation-delay: 1s;" />
+    <use href="#sag-yaprak" class="zambak-cizgi" style="animation-delay: 2s;" />
+    <use href="#cicek-orta" class="zambak-cizgi" style="animation-delay: 3s;" />
+    <use href="#cicek-sol" class="zambak-cizgi" style="animation-delay: 3.5s;" />
+    <use href="#cicek-sag" class="zambak-cizgi" style="animation-delay: 3.5s;" />
+    <text class="sevgi-metni"><textPath href="#sap" startOffset="100%">Seni Seviyorum • I Love You • Te Amo • Je t'aime<animate attributeName="startOffset" from="100%" to="-50%" dur="12s" repeatCount="indefinite" /></textPath></text>
+    <text class="sevgi-metni" style="font-size: 11px;"><textPath href="#sol-yaprak" startOffset="100%">Ich liebe dich • Ti amo<animate attributeName="startOffset" from="100%" to="-50%" dur="9s" repeatCount="indefinite" /></textPath></text>
+    <text class="sevgi-metni" style="font-size: 11px;"><textPath href="#sag-yaprak" startOffset="100%">Ya tebya lyublyu • Saranghae<animate attributeName="startOffset" from="100%" to="-50%" dur="10s" repeatCount="indefinite" /></textPath></text>
+    <text class="sevgi-metni" style="font-size: 10px;"><textPath href="#cicek-orta" startOffset="100%">Aishiteru • Wo ai ni • S'agapo • Seni Seviyorum<animate attributeName="startOffset" from="100%" to="-100%" dur="15s" repeatCount="indefinite" /></textPath></text>
+</svg>
+</body>
+</html>
+EOF
