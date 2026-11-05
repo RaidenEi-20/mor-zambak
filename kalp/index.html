@@ -1,21 +1,65 @@
-# 3. index.html dosyasını zambak kodlarıyla tek komutta yeniden yarat
+# index.html'i efsanevi animasyonlarla yeniden yazıyoruz
 cat << 'EOF' > index.html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senin İçin 🪻</title>
+    <title>Sana Çok Aşığım 🪻</title>
     <style>
-        body { background-color: #050508; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; font-family: 'Courier New', monospace; }
-        svg { width: 100vw; max-width: 500px; height: 90vh; filter: drop-shadow(0 0 12px rgba(199, 125, 255, 0.6)); }
-        .zambak-cizgi { fill: none; stroke: #c77dff; stroke-width: 1.5; stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: cizim 5s ease-in-out forwards; }
+        body { 
+            background-color: #000000; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; overflow: hidden; 
+            font-family: 'Courier New', Courier, monospace; 
+        }
+        
+        /* Zambak Vektör Stili */
+        svg { 
+            width: 100vw; max-width: 600px; height: 90vh; 
+            filter: drop-shadow(0 0 15px rgba(199, 125, 255, 0.8)); 
+            z-index: 10;
+            position: relative;
+        }
+        .zambak-cizgi {
+            fill: none; stroke: #c77dff; stroke-width: 1.8;
+            stroke-dasharray: 1000; stroke-dashoffset: 1000;
+            animation: cizim 6s ease-in-out forwards;
+        }
         @keyframes cizim { to { stroke-dashoffset: 0; } }
-        .sevgi-metni { font-size: 13px; fill: #e0b0ff; font-weight: bold; letter-spacing: 2px; text-shadow: 0 0 8px #9d4edd; opacity: 0; animation: yaziBelirme 2s ease-in forwards 3s; }
+
+        /* Yazılım/Kodlama Vib'ı İçin Hacker Metin Stili */
+        .kod-metni {
+            font-size: 11px; fill: #00ffff; /* Neon yazılım mavisi */
+            font-weight: bold; letter-spacing: 1px;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #0088aa;
+            opacity: 0; 
+            animation: yaziBelirme 2s ease-in forwards 4s;
+        }
         @keyframes yaziBelirme { to { opacity: 1; } }
+
+        /* Arka Plan Efektleri (Yıldızlar, Kalpler, Zambaklar) */
+        .star {
+            position: absolute; background: white; border-radius: 50%;
+            animation: twinkle infinite alternate; z-index: 1;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 5px white; }
+        }
+        .floating-item {
+            position: absolute; z-index: 2; opacity: 0;
+            animation: floatUp linear forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
+<!-- Zambak SVG Animasyonu -->
 <svg viewBox="0 0 400 600" id="zambak">
     <defs>
         <path id="sap" d="M 200 580 Q 180 400 200 250" />
@@ -25,17 +69,87 @@ cat << 'EOF' > index.html
         <path id="cicek-sol" d="M 200 250 C 150 150 80 150 60 90 C 130 100 180 150 200 250" />
         <path id="cicek-sag" d="M 200 250 C 250 150 320 150 340 90 C 270 100 220 150 200 250" />
     </defs>
+
     <use href="#sap" class="zambak-cizgi" />
-    <use href="#sol-yaprak" class="zambak-cizgi" style="animation-delay: 1s;" />
-    <use href="#sag-yaprak" class="zambak-cizgi" style="animation-delay: 2s;" />
-    <use href="#cicek-orta" class="zambak-cizgi" style="animation-delay: 3s;" />
-    <use href="#cicek-sol" class="zambak-cizgi" style="animation-delay: 3.5s;" />
-    <use href="#cicek-sag" class="zambak-cizgi" style="animation-delay: 3.5s;" />
-    <text class="sevgi-metni"><textPath href="#sap" startOffset="100%">Seni Seviyorum • I Love You • Te Amo • Je t'aime<animate attributeName="startOffset" from="100%" to="-50%" dur="12s" repeatCount="indefinite" /></textPath></text>
-    <text class="sevgi-metni" style="font-size: 11px;"><textPath href="#sol-yaprak" startOffset="100%">Ich liebe dich • Ti amo<animate attributeName="startOffset" from="100%" to="-50%" dur="9s" repeatCount="indefinite" /></textPath></text>
-    <text class="sevgi-metni" style="font-size: 11px;"><textPath href="#sag-yaprak" startOffset="100%">Ya tebya lyublyu • Saranghae<animate attributeName="startOffset" from="100%" to="-50%" dur="10s" repeatCount="indefinite" /></textPath></text>
-    <text class="sevgi-metni" style="font-size: 10px;"><textPath href="#cicek-orta" startOffset="100%">Aishiteru • Wo ai ni • S'agapo • Seni Seviyorum<animate attributeName="startOffset" from="100%" to="-100%" dur="15s" repeatCount="indefinite" /></textPath></text>
+    <use href="#sol-yaprak" class="zambak-cizgi" style="animation-delay: 1.5s;" />
+    <use href="#sag-yaprak" class="zambak-cizgi" style="animation-delay: 2.5s;" />
+    <use href="#cicek-orta" class="zambak-cizgi" style="animation-delay: 3.5s;" />
+    <use href="#cicek-sol" class="zambak-cizgi" style="animation-delay: 4s;" />
+    <use href="#cicek-sag" class="zambak-cizgi" style="animation-delay: 4s;" />
+
+    <!-- 10 DİLDE KOD FORMATINDA SANA ÇOK AŞIĞIM YAZILARI -->
+    
+    <!-- Sap Kısmı (Türkçe & İngilizce) -->
+    <text class="kod-metni"><textPath href="#sap" startOffset="100%">
+        console.log("Sana çok aşığım"); | print("I'm so in love with you");
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="12s" repeatCount="indefinite" />
+    </textPath></text>
+    
+    <!-- Sol Yaprak (İspanyolca & Fransızca) -->
+    <text class="kod-metni" style="font-size: 10px;"><textPath href="#sol-yaprak" startOffset="100%">
+        echo "Estoy muy enamorado de ti"; | puts "Je suis fou amoureux de toi";
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="10s" repeatCount="indefinite" />
+    </textPath></text>
+    
+    <!-- Sağ Yaprak (Almanca) -->
+    <text class="kod-metni" style="font-size: 10px;"><textPath href="#sag-yaprak" startOffset="100%">
+        printf("Ich bin sehr in dich verliebt\n");
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="11s" repeatCount="indefinite" />
+    </textPath></text>
+
+    <!-- Çiçek Orta (İtalyanca & Rusça) -->
+    <text class="kod-metni" style="font-size: 9px;"><textPath href="#cicek-orta" startOffset="100%">
+        System.out.print("Sono molto innamorato di te"); | cout << "Я так люблю тебя";
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="15s" repeatCount="indefinite" />
+    </textPath></text>
+
+    <!-- Çiçek Sol (Korece) -->
+    <text class="kod-metni" style="font-size: 9px;"><textPath href="#cicek-sol" startOffset="100%">
+        <h1>널 너무 사랑해</h1>
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="11s" repeatCount="indefinite" />
+    </textPath></text>
+
+    <!-- Çiçek Sağ (Japonca & Portekizce) -->
+    <text class="kod-metni" style="font-size: 9px;"><textPath href="#cicek-sag" startOffset="100%">
+        fmt.Println("あなたに深く恋しています"); | Log.i("Estou muito apaixonado por você");
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="13s" repeatCount="indefinite" />
+    </textPath></text>
 </svg>
+
+<!-- Arka Plan Javascript Animasyon Motoru -->
+<script>
+    const body = document.body;
+    
+    // Parlayan yıldızları oluştur
+    for(let i=0; i<90; i++) {
+        let star = document.createElement('div');
+        star.className = 'star';
+        let size = Math.random() * 2.5;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+        star.style.animationDelay = Math.random() * 2 + 's';
+        body.appendChild(star);
+    }
+
+    // Uçuşan Kalp ve Zambakları sonsuz döngüde oluştur
+    const items = ['💖', '🪻', '💜', '✨', '💻', '🤍'];
+    setInterval(() => {
+        let floatItem = document.createElement('div');
+        floatItem.className = 'floating-item';
+        floatItem.innerText = items[Math.floor(Math.random() * items.length)];
+        floatItem.style.left = Math.random() * 100 + 'vw';
+        floatItem.style.fontSize = (Math.random() * 12 + 15) + 'px';
+        floatItem.style.animationDuration = (Math.random() * 5 + 7) + 's';
+        body.appendChild(floatItem);
+        
+        // Ekrana sığmayanları belleği yormamak için sil
+        setTimeout(() => { floatItem.remove(); }, 13000);
+    }, 450);
+</script>
+
 </body>
 </html>
 EOF
